@@ -6,5 +6,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>splm-back</module>
+  	<module>splm-front</module>
   </modules>
 </project>
