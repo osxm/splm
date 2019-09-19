@@ -22,12 +22,13 @@ import org.hibernate.annotations.GenericGenerator;
  * @author oscarchen
  */
 @MappedSuperclass
-@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid2")
 public abstract class SplmRoot {
 
 	@Id
 	// @GeneratedValue(generator = "jpa-uuid")
 	@GeneratedValue(generator = "jpa-uuid")
+	
 	// @Column(length = 32)
 	private String uid;
 
