@@ -17,15 +17,4 @@ Ext.define('Splm.view.main.NavigationTree', {
 		itemclick : 'navItemClick'
 	}
 });
-{
-	"expanded": true,
-	"children": [
-		{
-			"text": "Demo",
-			"iconCls": "x-fa fa-leanpub",
-			"expanded": true,
-			"leaf": true,
-			"itemClass":"Demo"
-		}
-	]
-}
+
