@@ -1,3 +1,31 @@
+.x-tool-collapse-left:before {
+    content: "\f0c9";
+}
+.x-tool-expand-right:before{
+    content: "\f0c9";
+}
+
+.splm-main-header {
+	background-color: $base-color;	
+}
+//top Tab
+@include extjs-tab-panel-ui(
+    $ui: 'splm-main-tab-ui',   
+     
+    $ui-bar-padding: 0,
+    $ui-tab-background-color-active:$base-color,
+    $ui-tab-color-active:#fff,
+    $ui-tab-color:#fff,
+    $ui-tab-color-over:#fff,
+    $ui-tab-glyph-color:#fff,
+    $ui-tab-glyph-color-active :#fff,
+    $ui-tab-closable-icon-glyph-color :#fff,
+    $ui-tab-closable-icon-glyph-color-active:#fff,
+    $ui-tab-closable-icon-top:15px,
+    $ui-tab-line-height:28px
+);
+
+
 /*
  * This file contains styling for the Main view.
  */

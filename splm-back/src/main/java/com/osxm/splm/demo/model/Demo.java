@@ -18,16 +18,16 @@ import com.osxm.splm.base.model.SplmRoot;
   * @author oscarchen
   */
 @Entity
-public class Demo extends SplmRoot{
+public class Demo extends SplmRoot {
 
-	private String name;
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }
