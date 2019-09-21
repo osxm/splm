@@ -14,8 +14,9 @@ package com.osxm.splm.develop;
   * @author oscarchen
   */
 public class CodeGenerator {
-    public void generateClassCode(String className,String classDisName,String moduleName) {
-        
+    public void generateModelClassCode(String moduleName,String className,String classDisName,boolean force) {
+    	String classRootPath = this.getClass().getResource("/").getPath();
+    	System.out.println(classRootPath);
     }
     /**
       * @Title: main
@@ -25,6 +26,7 @@ public class CodeGenerator {
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-
+    	CodeGenerator generator = new CodeGenerator();
+    	generator.generateModelClassCode("admin", "Usr", "User", false);
     }
 }
