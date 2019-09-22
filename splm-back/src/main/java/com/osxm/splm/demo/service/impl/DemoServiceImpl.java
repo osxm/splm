@@ -28,43 +28,41 @@ public class DemoServiceImpl implements DemoService {
 	@PersistenceContext
 	protected EntityManager em;
 
-	//@Override
+	// @Override
 	public Demo get(String id) {
 		// TODO Auto-generated method stub
 		return em.find(Demo.class, id);
 	}
 
-	//@Override
+	// @Override
 	public void delete(String id) {
 		// TODO Auto-generated method stub
 		em.remove(get(id));
 	}
 
-	//@Override
+	// @Override
 	public Demo add(Demo entity) {
 		// TODO Auto-generated method stub
 		em.persist(entity);
 		return entity;
 	}
 
-	//@Override
+	// @Override
 	public void update(Demo entity) {
 		// TODO Auto-generated method stub
 		em.merge(entity);
 	}
 
-	//@Override
+	// @Override
 	public List<Demo> list(String hql) {
 		// TODO Auto-generated method stub
 		return em.createQuery(hql, Demo.class).getResultList();
 	}
 
-	//@Override
+	// @Override
 	public List<Demo> listAll() {
 		// TODO Auto-generated method stub
 		return em.createQuery("from Demo", Demo.class).getResultList();
 	}
-
-
 
 }

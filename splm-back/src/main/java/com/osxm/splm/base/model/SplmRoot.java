@@ -36,6 +36,7 @@ public abstract class SplmRoot {
  
   @Id
   @GeneratedValue(generator = "system-uuid")
+  //@GenericGenerator(name = "system-uuid", strategy = "uuid2")
   @GenericGenerator(name = "system-uuid", strategy = "uuid2")
   private String uid;
 

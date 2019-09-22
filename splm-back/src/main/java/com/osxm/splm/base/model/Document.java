@@ -15,7 +15,7 @@ import javax.persistence.Entity;
  * @Description: TODO
  * @author oscarchen
  */
-@Entity
+//@Entity
 public class Document extends DataItem {
 
 	private String name;
