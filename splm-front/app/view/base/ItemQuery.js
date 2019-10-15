@@ -11,23 +11,20 @@ Ext.define('Splm.view.base.ItemQuery', {
 		xtype : 'button',
 		text : 'Query',
 		iconCls : 'x-fa fa-search',
-		hidden:true,
 		name:'query',
 		handler : 'queryItems'
 	}, {
 		xtype : 'button',
 		text : 'Add Filter',
 		iconCls : 'x-fa fa-filter',
-		hidden:true,
 		name:'addFilter',
 		handler : 'addQueryFilter'
 	}, {
 		xtype : 'button',
 		text : 'Create',
-		hidden:true,
 		name:'create',
 		iconCls : 'x-fa fa-plus',
-		handler : 'prepareCreateItem'
+		handler : 'beforeCreateItem'
 	} ],
 	queryfieldcontainer : {
 		xtype : 'fieldcontainer',
@@ -69,7 +66,8 @@ Ext.define('Splm.view.base.ItemQuery', {
 		var filterFields = me.filterFields;
 		var moreFilterFields = me.moreFilterFields;
 		var listFields = me.listFields;
-		var className = me.xtype;
+        var xType = me.xtype;		
+		var className = xType.substring(0,xType.length-5);
 		var queryFormFieldCfgs = [];
 		var listColumnsCfgs = [];
 		for ( var i in filterFields) {
@@ -118,6 +116,6 @@ Ext.define('Splm.view.base.ItemQuery', {
 
 		this.callParent();
 	},listeners:{
-		afterrender:'itemPanelAfterRender'
+		//afterrender:'itemPanelAfterRender'
 	}
 });

@@ -22,6 +22,8 @@ public class Demo extends SplmRoot {
 
     private String name;
 
+    private String descrip;
+
     public String getName() {
         return name;
     }
@@ -30,4 +32,12 @@ public class Demo extends SplmRoot {
         this.name = name;
     }
 
+    public String getDescrip() {
+        return descrip;
+    }
+
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
+    }
 }
+

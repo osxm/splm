@@ -39,11 +39,10 @@ import com.osxm.splm.develop.service.CodeService;
 public class CodeServiceImpl extends AbstractService implements CodeService {
 
 	private String projectPath;
-	private String javaSrcPath;
-	private String demoPath;
 
-	@Autowired
-	private FileServiceImpl fileService;
+	private String javaSrcPath;
+
+	private String demoPath;
 
 	public CodeServiceImpl() {
 		projectPath = BaseUtil.getProjectPath();
@@ -64,9 +63,8 @@ public class CodeServiceImpl extends AbstractService implements CodeService {
 			throwSplmException("1001Txt", errMsgArgs);
 		}
 		String modulePath = this.projectPath + File.separator + this.javaSrcPath + File.separator + moduleName;
-
 		File moduleDir = new File(modulePath);
-
+		moduleDir.mkdir();
 		List<File> fileList = listDemoFilesAndInitDir(new ArrayList<File>(), demoPath, 0, moduleName);
 		for (File file : fileList) {
 			String demoFileName = file.getName();
@@ -74,25 +72,34 @@ public class CodeServiceImpl extends AbstractService implements CodeService {
 			String demoFilePath = demoFileFullName.replace(File.separator + demoFileName, "");
 			String newFilePath = demoFilePath.replace(demoPath, modulePath);
 			String newFileName = demoFileName.replace("Demo", className);
-			generateFileByTemplate(file, newFilePath, newFileName);
+			generateFileByTemplate(file, newFilePath, moduleName, className, newFileName);
 		}
 		System.out.println(projectPath);
 	}
 
-	public void generateFileByTemplate(File tempFile, String filePath, String className) {
+	public void generateFileByTemplate(File tempFile, String filePath, String moduleName, String className,
+			String newFileName) {
 		try {
-			String fileFullName = filePath + File.separator + className;
+			String fileFullName = filePath + File.separator + newFileName;
 			InputStreamReader reader = new InputStreamReader(new FileInputStream(tempFile), "UTF-8");
 			BufferedReader bfreader = new BufferedReader(reader);
 			File newFile = new File(fileFullName);
 			// FileOutputStream fout=new FileOutputStream(fileFullName,true);
 			PrintWriter printWriter = new PrintWriter(new FileWriter(newFile, true), true);
+			// PrintWriter printWriter = new PrintWriter(new FileWriter(newFile), true);
 			String line;
 			while ((line = bfreader.readLine()) != null) {
 				if (line.indexOf("Demo") > 0) {
 					line = line.replace("Demo", className);
 				}
-				printWriter.write(line);
+				if (line.indexOf("com.osxm.splm.demo") > 0) {
+					line = line.replace("com.osxm.splm.demo", "com.osxm.splm." + moduleName);
+				}
+				if (line.indexOf("/demos") > 0) {
+					line = line.replace("/demos", "/" + className.toLowerCase());
+				}
+
+				printWriter.println(line);
 			}
 			printWriter.flush();
 			printWriter.close();
@@ -125,7 +132,9 @@ public class CodeServiceImpl extends AbstractService implements CodeService {
 					for (File fileTemp : files) {
 						if (fileTemp.isDirectory()) {
 							String dirPath = fileTemp.getAbsolutePath();
-							String newDir = dirPath.replace("Demp", moduleName);
+							String newDir = dirPath.replace("demo", moduleName);
+							File dir = new File(newDir);
+							dir.mkdir();
 							fileList = listDemoFilesAndInitDir(fileList, fileTemp.getAbsolutePath(), iDeep + 1,
 									moduleName);
 						} else {

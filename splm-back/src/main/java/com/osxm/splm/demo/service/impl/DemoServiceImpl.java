@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
@@ -25,44 +26,50 @@ import com.osxm.splm.demo.service.DemoService;
  */
 @Service
 public class DemoServiceImpl implements DemoService {
-	@PersistenceContext
-	protected EntityManager em;
 
-	// @Override
-	public Demo get(String id) {
-		// TODO Auto-generated method stub
-		return em.find(Demo.class, id);
-	}
+    @PersistenceContext
+    protected EntityManager em;
 
-	// @Override
-	public void delete(String id) {
-		// TODO Auto-generated method stub
-		em.remove(get(id));
-	}
+    // @Override
+    public Demo get(String id) {
+        // TODO Auto-generated method stub
+        Demo demo = em.find(Demo.class, id);
+        demo.setDisplayName(demo.getName());
+        return em.find(Demo.class, id);
+    }
 
-	// @Override
-	public Demo add(Demo entity) {
-		// TODO Auto-generated method stub
-		em.persist(entity);
-		return entity;
-	}
+    // @Override
+    public void delete(String id) {
+        // TODO Auto-generated method stub
+        em.remove(get(id));
+    }
 
-	// @Override
-	public void update(Demo entity) {
-		// TODO Auto-generated method stub
-		em.merge(entity);
-	}
+    // @Override
+    @Transactional
+    public Demo add(Demo entity) {
+        // TODO Auto-generated method stub
+        em.persist(entity);
+        entity.setDisplayName(entity.getName());
+        return entity;
+    }
 
-	// @Override
-	public List<Demo> list(String hql) {
-		// TODO Auto-generated method stub
-		return em.createQuery(hql, Demo.class).getResultList();
-	}
+    // @Override
+    @Transactional
+    public void update(Demo entity) {
+        // TODO Auto-generated method stub
+        em.merge(entity);
+    }
 
-	// @Override
-	public List<Demo> listAll() {
-		// TODO Auto-generated method stub
-		return em.createQuery("from Demo", Demo.class).getResultList();
-	}
+    // @Override
+    public List<Demo> list(String hql) {
+        // TODO Auto-generated method stub
+        return em.createQuery(hql, Demo.class).getResultList();
+    }
+
+    // @Override
+    public List<Demo> listAll() {
+        // TODO Auto-generated method stub
+        return em.createQuery("from Demo", Demo.class).getResultList();
+    }
 
 }

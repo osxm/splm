@@ -5,29 +5,23 @@
 Ext.define('Splm.store.demo.DemoStore', {
 	extend : 'Splm.store.base.ItemStore',
 	alias : 'store.DemoStore',
-	//model : 'Nplm.model.pnm.NplmPnmMaster',
+	model : 'Splm.model.demo.Demo',
+	autoLoad : true,
 	constructor : function(config) {
 		var devType = Splm.devType != null ? Splm.devType : "Standalone";
 		config = config || {};
-		var restService = this.getServiceUrlLink("test");
-		if (devType == "Integrate") {
-			config.proxy = {
-				type : 'ajax',
-				url : restService,
-			};
-		} else if (devType == "Standalone") {
-			config.proxy = {
-				type : 'ajax',
-				url : 'data/demo/Demo.json',
-				reader : {
-					type : 'json',
-					rootProperty : 'datas'
-				}
-			};
-		}
+		var restService = this.getUrlLink("/demos");
 		config.proxy = {
-
+			type : 'ajax',
+			url : 'data/demo/DemoList.json',
+			reader : {
+				type : 'json',
+				rootProperty : 'data'
+			}
 		};
+		if (devType == "Integrate") {
+			config.proxy.url = restService;
+		}
 		this.callParent([ config ]);
 	}
 });

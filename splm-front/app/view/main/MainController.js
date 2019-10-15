@@ -48,7 +48,7 @@ Ext.define('Splm.view.main.MainController', {
 					// Parse OBID of ItemInfo
 					var itemObid = null;
 					var itemClass = null;
-					if (xtype.substr(xtype.length - 4) == "Info") { // NplmTipProjectInfo
+					if (xtype.substr(xtype.length - 4) == "Info") { // 
 						var tabIdArray = tabId.split("_");
 						if (tabIdArray != null && tabIdArray.length > 1) {
 							itemClass = tabIdArray[0];
@@ -95,7 +95,7 @@ Ext.define('Splm.view.main.MainController', {
 		var itemClass = treeItem.getNode().get("itemClass");
 		var tabTitle = treeItem.getNode().get("text");
 		if (isLeaf && itemClass) {
-			me.openContentTab(itemClass, itemClass,tabTitle);
+			me.openContentTab(itemClass, itemClass+"Query",tabTitle);
 		}
 	}
 

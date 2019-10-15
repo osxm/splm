@@ -1,6 +1,6 @@
 Ext.define('Splm.store.base.ItemStore', {
 	extend : 'Ext.data.Store',
-	getServiceUrlLink : function(service) {
+	getUrlLink : function(service) {
 		var url = "";
 		if (Splm.sessionInfo.serverurl != null
 				&& Splm.sessionInfo.serverurl.length > 0) {

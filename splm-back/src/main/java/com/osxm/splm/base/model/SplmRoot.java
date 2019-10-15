@@ -25,75 +25,84 @@ import org.hibernate.annotations.GenericGenerator;
 //@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public abstract class SplmRoot {
 
-  //@Id
-  // @GeneratedValue(generator = "jpa-uuid")
-  //@GeneratedValue(generator = "jpa-uuid")
-  // @Column(length = 32)
-  //@GeneratedValue(generator = "jpa-uuid")
-  //@GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-  //@Column(name = "uid", columnDefinition = "VARCHAR(255)")
-  //@GeneratedValue(strategy = GenerationType.AUTO)
- 
-  @Id
-  @GeneratedValue(generator = "system-uuid")
-  //@GenericGenerator(name = "system-uuid", strategy = "uuid2")
-  @GenericGenerator(name = "system-uuid", strategy = "uuid2")
-  private String uid;
+	// @Id
+	// @GeneratedValue(generator = "jpa-uuid")
+	// @GeneratedValue(generator = "jpa-uuid")
+	// @Column(length = 32)
+	// @GeneratedValue(generator = "jpa-uuid")
+	// @GenericGenerator(name = "uuid2", strategy =
+	// "org.hibernate.id.UUIDGenerator")
+	// @Column(name = "uid", columnDefinition = "VARCHAR(255)")
+	// @GeneratedValue(strategy = GenerationType.AUTO)
 
+	@Id
+	@GeneratedValue(generator = "system-uuid")
+	// @GenericGenerator(name = "system-uuid", strategy = "uuid2")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
+	private String obid;
 
-  private Timestamp sysCreatedDate;
+	@Transient
+	private String displayName;
 
-  private String sysCreator;
+	private Timestamp sysCreatedDate;
 
-  private Timestamp sysModifiedDate;
+	private String sysCreator;
 
-  private String sysModifier;
+	private Timestamp sysModifiedDate;
 
-  public String getUid() {
-      return uid;
-  }
+	private String sysModifier;
 
-  public void setUid(String uid) {
-      this.uid = uid;
-  }
-  
-  /*public UUID getUid() {
-      return uid;
-  }
+	public String getObid() {
+		return obid;
+	}
 
-  public void setUid(UUID uid) {
-      this.uid = uid;
-  }*/
+	public void setObid(String obid) {
+		this.obid = obid;
+	}
 
-  public Timestamp getSysCreatedDate() {
-      return sysCreatedDate;
-  }
+	/*
+	 * public UUID getUid() { return uid; }
+	 * 
+	 * public void setUid(UUID uid) { this.uid = uid; }
+	 */
 
-  public void setSysCreatedDate(Timestamp sysCreatedDate) {
-      this.sysCreatedDate = sysCreatedDate;
-  }
+	public Timestamp getSysCreatedDate() {
+		return sysCreatedDate;
+	}
 
-  public String getSysCreator() {
-      return sysCreator;
-  }
+	public void setSysCreatedDate(Timestamp sysCreatedDate) {
+		this.sysCreatedDate = sysCreatedDate;
+	}
 
-  public void setSysCreator(String sysCreator) {
-      this.sysCreator = sysCreator;
-  }
+	public String getSysCreator() {
+		return sysCreator;
+	}
 
-  public Timestamp getSysModifiedDate() {
-      return sysModifiedDate;
-  }
+	public void setSysCreator(String sysCreator) {
+		this.sysCreator = sysCreator;
+	}
 
-  public void setSysModifiedDate(Timestamp sysModifiedDate) {
-      this.sysModifiedDate = sysModifiedDate;
-  }
+	public Timestamp getSysModifiedDate() {
+		return sysModifiedDate;
+	}
 
-  public String getSysModifier() {
-      return sysModifier;
-  }
+	public void setSysModifiedDate(Timestamp sysModifiedDate) {
+		this.sysModifiedDate = sysModifiedDate;
+	}
 
-  public void setSysModifier(String sysModifier) {
-      this.sysModifier = sysModifier;
-  }
+	public String getSysModifier() {
+		return sysModifier;
+	}
+
+	public void setSysModifier(String sysModifier) {
+		this.sysModifier = sysModifier;
+	}
+
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
 }
